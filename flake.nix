@@ -15,7 +15,7 @@
         inputs.treefmt-nix.flakeModule
       ];
       flake = {
-        nixosModules.test = {
+        nixosModules.module-rust-dummy-website = {
           systemd.services.rust-dummy-website = {
             enable = true;
             # package = rustapp.packages.${system}.rust-dummy-website;
