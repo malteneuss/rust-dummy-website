@@ -42,6 +42,12 @@
             cargoLock.lockFile = ./Cargo.lock;
           };
 
+          packages.rust-dummy-website = pkgs.rustPlatform.buildRustPackage {
+            inherit (cargoToml.package) name version;
+            src = ./.;
+            cargoLock.lockFile = ./Cargo.lock;
+          };
+
           # Rust dev environment
           devShells.default = pkgs.mkShell {
             inputsFrom = [
