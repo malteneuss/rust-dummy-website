@@ -20,7 +20,7 @@
             enable = true;
             # package = rustapp.packages.${system}.rust-dummy-website;
             serviceConfig = {
-              ExecStart = "${self.packages.rust-dummy-website}/bin/rust-dummy-website";
+              ExecStart = "${self.packages.x86_64-linux.rust-dummy-website}/bin/rust-dummy-website";
               Restart = "always";
               DynamicUser = true;
               Environment = "RUST_LOG=info";
