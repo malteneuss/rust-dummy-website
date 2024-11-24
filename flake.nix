@@ -54,9 +54,12 @@
         {
           # Rust package
           packages.rust-dummy-website = pkgs.rustPlatform.buildRustPackage {
-            inherit (cargoToml.package) name version;
+            # inherit (cargoToml.package) name version;
+            name = "rust-dummy-website";
+            version = "0.1.0";
             src = ./.;
             cargoLock.lockFile = ./Cargo.lock;
+            buildAndTestSubdir = "subpackage";
           };
 
           packages.default = self'.packages.rust-dummy-website;
