@@ -4,11 +4,12 @@ use axum::{
     Json, Router,
 };
 use serde::{Deserialize, Serialize};
+use tracing_subscriber::{fmt, EnvFilter};
 
 #[tokio::main]
 async fn main() {
     // initialize tracing
-    tracing_subscriber::fmt::init();
+    tracing_subscriber::fmt().with_env_filter(EnvFilter::new("info")).init();
 
     // build our application with a route
     let app = Router::new()
@@ -17,6 +18,7 @@ async fn main() {
         // `POST /users` goes to `create_user`
         .route("/users", post(create_user));
 
+    tracing::info!("Listening on /0.0.0.0:8080");
     // run our app with hyper, listening globally on port 8080
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
     axum::serve(listener, app).await.unwrap();
